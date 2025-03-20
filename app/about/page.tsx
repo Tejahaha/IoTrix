@@ -25,11 +25,11 @@ export default function AboutPage() {
   });
 
   return (
-    <div className="container px-4 py-12 md:px-6 md:py-24">
-      <div className="mx-auto max-w-4xl space-y-12">
+    <div className="container px-4 py-8 md:px-6 md:py-24">
+      <div className="mx-auto max-w-4xl space-y-8 md:space-y-12">
         <div className="space-y-4 text-center about-section">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">About IOTRIX</h1>
-          <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter sm:text-5xl">About IOTRIX</h1>
+          <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed font-light dark:text-gray-400">
             Innovating the future with IoT technology
           </p>
         </div>
@@ -46,8 +46,8 @@ export default function AboutPage() {
           </div>
 
           <div className="space-y-4 about-section">
-            <h2 className="text-3xl font-bold">Our Mission</h2>
-            <p className="text-gray-500 dark:text-gray-400">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold">Our Mission</h2>
+            <p className="text-gray-500 font-light dark:text-gray-400">
               IOTRIX is dedicated to fostering innovation and excellence in the field of Internet of Things (IoT). Our
               mission is to create a collaborative environment where students can learn, experiment, and develop
               cutting-edge IoT solutions that address real-world challenges.
@@ -92,7 +92,7 @@ export default function AboutPage() {
 
           <div className="space-y-4 about-section">
             <h2 className="text-3xl font-bold">Our Values</h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-lg border border-gray-200 p-6 dark:border-gray-800 value-card">
                 <h3 className="text-lg font-bold">Innovation</h3>
                 <p className="text-gray-500 dark:text-gray-400">

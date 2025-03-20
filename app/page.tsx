@@ -41,10 +41,10 @@ export default function Home() {
               <div className="inline-block rounded-lg bg-gradient-to-r from-blue-100 to-blue-50 dark:from-blue-900/30 dark:to-blue-800/20 px-3 py-1 text-sm text-blue-600 dark:text-blue-300">
                 Welcome to IOTRIX
               </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter sm:text-5xl">
                 Innovating the Future with IoT
               </h1>
-              <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              <p className="max-w-[600px] text-gray-500 text-base/relaxed md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed font-light dark:text-gray-400">
                 IOTRIX is a premier club dedicated to exploring and advancing Internet of Things technology through
                 collaboration, education, and innovation.
               </p>
@@ -67,10 +67,10 @@ export default function Home() {
             </div>
             <div className="flex justify-center hero-image">
               <Image
-                src="/placeholder.svg?height=400&width=400"
+                src="/iotrix.png"
                 alt="IOTRIX Hero Image"
-                width={400}
-                height={400}
+                width={350}
+                height={350}
                 className="rounded-lg object-cover shadow-lg"
                 priority
               />
@@ -88,7 +88,7 @@ export default function Home() {
                 What We Do
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Explore the World of IoT with Us</h2>
-              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              <p className="max-w-[900px] text-gray-500 text-base/relaxed md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed font-light dark:text-gray-400">
                 IOTRIX provides a platform for students to learn, collaborate, and innovate in the field of Internet of
                 Things.
               </p>
@@ -141,7 +141,7 @@ export default function Home() {
                 Our Events
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Upcoming Events</h2>
-              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              <p className="max-w-[900px] text-gray-500 text-base/relaxed md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed font-light dark:text-gray-400">
                 Join us for workshops, hackathons, and other exciting IoT events.
               </p>
             </div>

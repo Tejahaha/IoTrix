@@ -151,17 +151,17 @@ export default function EventsPage() {
 
 
   return (
-    <div className="container px-4 py-12 md:px-6 md:py-24">
-      <div className="space-y-12">
+    <div className="container px-4 py-8 md:px-6 md:py-24">
+      <div className="space-y-8 md:space-y-12">
         <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">Events</h1>
-          <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter sm:text-5xl">Events</h1>
+          <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed font-light dark:text-gray-400">
             Join us for workshops, hackathons, and other exciting IoT events
           </p>
         </div>
 
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold">Upcoming Events</h2>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold">Upcoming Events</h2>
 
           <div className="grid gap-8">
             {upcomingEvents.map((event) => (
@@ -185,16 +185,15 @@ export default function EventsPage() {
                     <div className="mt-4 space-y-2">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{event.date}</span>
+                        <span className="text-sm font-light text-gray-500 dark:text-gray-400">{event.date}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Clock className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                        <span className="text-sm text-gray-500 dark:text-gray-400" />
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{event.time}</span>
+                        <span className="text-sm font-light text-gray-500 dark:text-gray-400">{event.time}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{event.location}</span>
+                        <span className="text-sm font-light text-gray-500 dark:text-gray-400">{event.location}</span>
                       </div>
                     </div>
 
@@ -217,7 +216,7 @@ export default function EventsPage() {
         <div className="space-y-8">
           <h2 className="text-3xl font-bold">Past Events</h2>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {pastEvents.map((event) => (
               <div
                 key={event.id}

@@ -1,18 +1,16 @@
 "use client"
 
+import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Twitter } from "lucide-react"
-import { useAnimateOnScroll } from "@/hooks/useAnimateOnScroll"
-
+import { motion, AnimatePresence } from "framer-motion"
 const teamMembers = [
   {
     id: 1,
     name: "Alex Johnson",
     role: "President",
     bio: "Alex is a senior Computer Science student with a passion for IoT and embedded systems. They have led multiple award-winning projects.",
-    image: "/placeholder.svg?height=300&width=300&text=AJ",
+    image: "/t.jpg",
     social: {
       twitter: "#",
       linkedin: "#",
@@ -106,97 +104,100 @@ const teamMembers = [
 ]
 
 export default function MembersPage() {
-  useAnimateOnScroll('.member-card', {
-    threshold: 0.1,
-    direction: 'up',
-    once: true
-  });
+  const [hoveredMember, setHoveredMember] = useState<number | null>(null)
+  const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 })
+  const popupRef = useRef<HTMLDivElement | null>(null)
 
-  useAnimateOnScroll('.team-header', {
-    threshold: 0.1,
-    direction: 'left',
-    once: true
-  });
+  const handleMemberHover = (event: React.MouseEvent, memberId: number) => {
+    setHoveredMember(memberId)
 
-  useAnimateOnScroll('.join-section', {
-    threshold: 0.1,
-    direction: 'up',
-    once: true
-  });
+    const card = event.currentTarget.getBoundingClientRect()
+    const popupWidth = 300
+    const popupHeight = 180
+    const gap = 12
+
+    let newLeft = card.right + gap
+    let newTop = card.top
+
+    if (newLeft + popupWidth > window.innerWidth) {
+      newLeft = card.left - popupWidth - gap
+    }
+    if (newTop + popupHeight > window.innerHeight) {
+      newTop = window.innerHeight - popupHeight - gap
+    }
+
+    setPopupPosition({ top: newTop, left: newLeft })
+  }
+
+  // No need to track mouse position anymore
+  const handleMouseMove = () => {}
+
+  const handleMouseLeave = () => {
+    setHoveredMember(null)
+  }
 
   return (
-    <div className="container px-4 py-12 md:px-6 md:py-24">
-      <div className="space-y-12">
-        <div className="space-y-4 text-center team-header">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">Meet Our Team</h1>
-          <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-            The talented individuals behind IOTRIX who make innovation happen
-          </p>
-        </div>
-
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {teamMembers.map((member) => (
-            <div
-              key={member.id}
-              className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950 member-card"
-            >
-              <div className="aspect-square overflow-hidden">
-                <Image
-                  src={member.image || "/placeholder.svg"}
-                  alt={member.name}
-                  width={300}
-                  height={300}
-                  className="object-cover transition-all group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold">{member.name}</h3>
-                <p className="text-sm text-blue-600 dark:text-blue-400">{member.role}</p>
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{member.bio}</p>
-                <div className="mt-4 flex gap-2">
-                  <Link
-                    href={member.social.twitter}
-                    className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-                  >
-                    <Twitter className="h-5 w-5" />
-                    <span className="sr-only">Twitter</span>
-                  </Link>
-                  <Link
-                    href={member.social.linkedin}
-                    className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                    <span className="sr-only">LinkedIn</span>
-                  </Link>
-                  <Link
-                    href={member.social.github}
-                    className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-                  >
-                    <Github className="h-5 w-5" />
-                    <span className="sr-only">GitHub</span>
-                  </Link>
-                </div>
-              </div>
+    <div 
+      className="container mx-auto px-4 py-8 relative"
+      onMouseMove={handleMouseMove}
+    >
+      {hoveredMember !== null && (
+        <div 
+          className="fixed inset-0 bg-black/40 pointer-events-none z-10"
+        />
+      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 relative z-20">
+        {teamMembers.map((member) => (
+          <div
+            key={member.id}
+            className="relative group cursor-pointer transition-all duration-300"
+            onMouseEnter={(e) => handleMemberHover(e, member.id)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="w-full aspect-square overflow-hidden rounded-lg">
+              <Image
+                src={member.image}
+                alt={member.name}
+                width={300}
+                height={300}
+                className={`object-cover w-full h-full transition-all duration-300 rounded-xl ${hoveredMember === member.id ? 'scale-105 brightness-110' : hoveredMember !== null ? 'brightness-50' : ''}`}
+              />
             </div>
-          ))}
-        </div>
 
-        <div className="space-y-4 text-center join-section">
-          <h2 className="text-3xl font-bold">Join Our Team</h2>
-          <p className="mx-auto max-w-[700px] text-gray-500 dark:text-gray-400">
-            Interested in becoming a part of IOTRIX? We&apos;re always looking for passionate individuals to join our
-            community.
-          </p>
-          <div className="flex justify-center">
-            <Link href="/join">
-              <Button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700">
-                Apply to Join
-              </Button>
-            </Link>
+            <AnimatePresence>
+              {hoveredMember === member.id && (
+                <motion.div
+                  ref={popupRef}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="fixed bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg w-[calc(100vw-2rem)] sm:w-72 border border-white/20 backdrop-blur-lg z-30 max-h-[80vh] overflow-y-auto"
+                  style={{
+                    top: window.innerWidth < 640 ? '50%' : popupPosition.top,
+                    left: window.innerWidth < 640 ? '50%' : popupPosition.left,
+                    transform: window.innerWidth < 640 ? 'translate(-50%, -50%)' : 'none'
+                  }}
+                >
+                  <h3 className="text-lg font-semibold">{member.name}</h3>
+                  <p className="text-sm text-primary">{member.role}</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-300 mt-2">{member.bio}</p>
+                  <div className="flex gap-3 mt-3">
+                    <a href={member.social.twitter} className="text-gray-600 hover:text-primary">
+                      <Twitter size={20} />
+                    </a>
+                    <a href={member.social.linkedin} className="text-gray-600 hover:text-primary">
+                      <Linkedin size={20} />
+                    </a>
+                    <a href={member.social.github} className="text-gray-600 hover:text-primary">
+                      <Github size={20} />
+                    </a>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   )
 }
-
