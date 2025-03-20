@@ -120,7 +120,7 @@ export default function ProjectsPage() {
         <div className="space-y-4 text-center">
           <h2 className="text-3xl font-bold">Have a Project Idea?</h2>
           <p className="mx-auto max-w-[700px] text-gray-500 dark:text-gray-400">
-            We're always looking for new and exciting IoT projects to work on. If you have an idea, we'd love to hear
+            We&apos;re always looking for new and exciting IoT projects to work on. If you have an idea, we&apos;d love to hear
             about it!
           </p>
           <div className="flex justify-center">
